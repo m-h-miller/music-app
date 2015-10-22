@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %> -->
+</head>
+<body>
+  <% session_option = signed_in? ? "Sign Out" : "Sign In" %>
+  <% method = signed_in? ? "DELETE" : "GET" %>
+  <% action_url = signed_in? ? session_url : new_session_url %>
+
+  <title>MusicApp</title>
+  <h1><%= current_user.email if signed_in? %></h1>
+
+  <form action= "<%= action_url %>" method = "POST" >
+    <%= auth_token %>
+
+    <input type="hidden" name="_method" value= "<%= method %>" >
+    <input type="submit" value="<%= session_option %>" >
+  </form>
+
+  <%= yield %>
+
+</body>
+
+</html>

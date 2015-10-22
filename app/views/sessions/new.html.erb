@@ -1,0 +1,25 @@
+<h1>Sign in!</h1>
+
+  <form action="<%= session_url %>" method="POST">
+
+    <%=auth_token%>
+
+    <label for="user_email">Email</label><br>
+    <input  type="text" name="user[email]" id="user_email"
+            value="<%= @user.email unless @user.nil? %>" >
+    <br><br>
+
+    <label for="user_password">Password</label><br>
+    <input type="password" name="user[password]" id="user_password" >
+    <br><br>
+
+    <input type="submit" value="Sign in!" >
+
+  </form>
+
+  <br><br>
+
+  <form action="<%= new_user_url %>" method="GET">
+    <%=auth_token%>
+    <input type="submit" value="Register an account!" >
+  </form>

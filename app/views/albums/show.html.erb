@@ -1,0 +1,38 @@
+<html>
+  <h1><%= @album.title %></h1>
+  <h3>by:
+    <a href="<%=band_url(@album.band_id) %>">
+      <%=@album.band.name %> </h3>
+    </a>
+  </h3>
+
+  <h4> Options: </h4>
+    <li>
+      <a href= "<%= new_album_track_url(@album) %>">
+        Add a new track!
+      </a>
+    </li>
+
+    <li>
+      <a href= "<%= edit_album_url(@album) %>">
+        Edit <%=@album.title%>
+      </a>
+    </li>
+
+    <form action = "<%= album_url(@album) %>" method="POST" >
+      <input type="hidden" name="_method" value="DELETE">
+      <%=auth_token%>
+        <button value="submit">
+          Delete <%=@album.title%>
+        </button>
+    </form>
+
+  <h3> <%=@album.title%>'s Tracks: </h3>
+    <% @album.tracks.each do |track| %>
+      <li>
+        <%= track.title %>
+      </li>
+      <% end %>
+
+
+</html>
